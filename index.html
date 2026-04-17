@@ -1,184 +1,571 @@
-export default function LandingCafe() {
-  const images = [
-    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80",
-  ];
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Artesano</title>
+  <meta name="description" content="Landing page para cafetería artesanal" />
 
-  return (
-    <div
-      className="min-h-screen text-neutral-900"
-      style={{
-        background: "#F5EBDD",
-        fontFamily: "Inter, sans-serif",
-      }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@600;700;800&family=Pacifico&display=swap');
-        .font-display { font-family: 'Playfair Display', serif; }
-        .font-script { font-family: 'Pacifico', cursive; }
-        .font-body { font-family: 'Inter', sans-serif; }
-      `}</style>
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
 
-      <header className="sticky top-0 z-20 backdrop-blur bg-white/70 border-b border-black/5">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
-              style={{ backgroundColor: "#6F4E37" }}
-            >
-              <span className="text-white text-xl font-script">M</span>
-            </div>
-            <div>
-              <p className="font-script text-lg leading-none" style={{ color: "#C97B63" }}>
-                Molino
-              </p>
-              <p className="font-display text-base leading-none">Café Artesanal</p>
-            </div>
-          </div>
-          <nav className="hidden md:flex gap-6 text-sm font-medium font-body">
-            <a href="#menu" className="hover:opacity-70">Menú</a>
-            <a href="#galeria" className="hover:opacity-70">Galería</a>
-            <a href="#contacto" className="hover:opacity-70">Contacto</a>
-          </nav>
+  <style>
+    :root {
+      --cafe: #6f4e37;
+      --crema: #f5ebdd;
+      --terracota: #c97b63;
+      --texto: #2a211b;
+      --blanco: #ffffff;
+      --sombra: 0 12px 30px rgba(0, 0, 0, 0.12);
+      --radio: 24px;
+      --max: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .nav {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+      flex-shrink: 0;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-copy small {
+      display: block;
+      font-family: 'Pacifico', cursive;
+      color: var(--terracota);
+      font-size: 1rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 600;
+    }
+
+    .menu a:hover {
+      color: var(--terracota);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--cafe);
+      color: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #5a3e2c;
+    }
+
+    .btn-outline {
+      border-color: var(--terracota);
+      color: var(--terracota);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--terracota);
+      color: var(--blanco);
+    }
+
+    .hero {
+      padding: 70px 0 40px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-family: 'Pacifico', cursive;
+      color: var(--terracota);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .hero h1,
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.05;
+      color: var(--texto);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: #57473c;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: var(--sombra);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat span {
+      color: #6f6258;
+      font-size: 0.95rem;
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .hero-gallery .big {
+      grid-column: 1 / -1;
+      height: 360px;
+    }
+
+    .hero-gallery .small {
+      height: 230px;
+    }
+
+    .hero-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+    }
+
+    section {
+      padding: 36px 0;
+    }
+
+    .card-block {
+      background: var(--blanco);
+      border-radius: 32px;
+      padding: 34px;
+      box-shadow: var(--sombra);
+    }
+
+    .section-top {
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      font-family: 'Pacifico', cursive;
+      color: var(--terracota);
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 10px;
+    }
+
+    .palette,
+    .typos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .palette-card,
+    .typo-card {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: #fff;
+    }
+
+    .palette-swatch {
+      height: 120px;
+    }
+
+    .palette-info,
+    .typo-card {
+      padding: 20px;
+    }
+
+    .palette-info h3,
+    .typo-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .typo-script {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: var(--terracota);
+    }
+
+    .typo-display {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+    }
+
+    .typo-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--cafe), #402a1f);
+      color: var(--blanco);
+      border-radius: 32px;
+      padding: 42px 34px;
+      box-shadow: var(--sombra);
+    }
+
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 22px;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: #6b5c51;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-wrap,
+      .palette,
+      .typos {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-gallery .big {
+        height: 280px;
+      }
+
+      .hero-gallery .small {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 14px 0;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-gallery .big,
+      .hero-gallery .small {
+        height: 240px;
+      }
+
+      .card-block,
+      .cta {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    ESTRUCTURA RECOMENDADA EN GITHUB:
+
+    /tu-repo
+      index.html
+      /assets
+        logo.png
+        imagen-1.jpg
+        imagen-2.jpg
+        imagen-3.jpg
+
+    Si tus archivos tienen otro nombre, solo cambia las rutas src.
+  -->
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <div class="brand-logo">
+          <!-- ESPACIO PARA TU LOGO -->
+          <img src="./assets/logo.png" alt="Logo Café Artesano">
         </div>
-      </header>
 
-      <main>
-        <section className="max-w-6xl mx-auto px-6 pt-16 pb-12 grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <p
-              className="font-script text-2xl mb-3"
-              style={{ color: "#C97B63" }}
-            >
-              Café, calma y diseño
-            </p>
-            <h1 className="font-display text-5xl md:text-7xl leading-tight mb-6">
-              Una página cálida para una marca con aroma propio.
-            </h1>
-            <p className="font-body text-lg md:text-xl text-neutral-700 max-w-xl mb-8">
-              Esta landing usa 3 imágenes principales, 3 colores base y 3 tipografías para construir una identidad visual elegante, cercana y memorable.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#galeria"
-                className="px-6 py-3 rounded-2xl text-white font-semibold shadow-sm"
-                style={{ backgroundColor: "#6F4E37" }}
-              >
-                Ver galería
-              </a>
-              <a
-                href="#contacto"
-                className="px-6 py-3 rounded-2xl border font-semibold"
-                style={{ borderColor: "#C97B63", color: "#C97B63" }}
-              >
-                Reservar mesa
-              </a>
-            </div>
+        <div class="brand-copy">
+          <small>Café con estilo</small>
+          <strong>Café Artesano</strong>
+        </div>
+      </a>
 
-            <div className="mt-10 grid grid-cols-3 gap-4 text-center">
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <p className="font-display text-2xl">3</p>
-                <p className="text-sm text-neutral-600">Imágenes</p>
-              </div>
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <p className="font-display text-2xl">3</p>
-                <p className="text-sm text-neutral-600">Colores</p>
-              </div>
-              <div className="bg-white rounded-2xl p-4 shadow-sm">
-                <p className="font-display text-2xl">3</p>
-                <p className="text-sm text-neutral-600">Tipografías</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src={images[0]}
-              alt="Taza de café"
-              className="col-span-2 h-72 w-full object-cover rounded-3xl shadow-lg"
-            />
-            <img
-              src={images[1]}
-              alt="Barista sirviendo café"
-              className="h-56 w-full object-cover rounded-3xl shadow-md"
-            />
-            <img
-              src={images[2]}
-              alt="Mesa de cafetería"
-              className="h-56 w-full object-cover rounded-3xl shadow-md"
-            />
-          </div>
-        </section>
-
-        <section id="menu" className="max-w-6xl mx-auto px-6 py-10">
-          <div className="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm">
-            <p className="font-script text-2xl mb-2" style={{ color: "#C97B63" }}>
-              Paleta visual
-            </p>
-            <h2 className="font-display text-4xl mb-8">Los 3 colores elegidos</h2>
-            <div className="grid md:grid-cols-3 gap-5">
-              {[
-                { name: "Marrón café", hex: "#6F4E37" },
-                { name: "Crema suave", hex: "#F5EBDD" },
-                { name: "Terracota", hex: "#C97B63" },
-              ].map((color) => (
-                <div key={color.hex} className="rounded-3xl overflow-hidden border border-black/5">
-                  <div style={{ backgroundColor: color.hex }} className="h-32" />
-                  <div className="p-5">
-                    <p className="font-display text-xl">{color.name}</p>
-                    <p className="text-neutral-600">{color.hex}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="galeria" className="max-w-6xl mx-auto px-6 py-10">
-          <div className="mb-6">
-            <p className="font-script text-2xl" style={{ color: "#C97B63" }}>
-              Identidad tipográfica
-            </p>
-            <h2 className="font-display text-4xl">Las 3 tipografías de la página</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            <div className="bg-white p-6 rounded-3xl shadow-sm">
-              <p className="font-display text-3xl mb-3">Playfair Display</p>
-              <p className="text-neutral-600">Para títulos elegantes y con personalidad.</p>
-            </div>
-            <div className="bg-white p-6 rounded-3xl shadow-sm">
-              <p className="font-body text-3xl font-bold mb-3">Inter</p>
-              <p className="text-neutral-600">Para textos limpios, modernos y fáciles de leer.</p>
-            </div>
-            <div className="bg-white p-6 rounded-3xl shadow-sm">
-              <p className="font-script text-3xl mb-3">Pacifico</p>
-              <p className="text-neutral-600">Para acentos cálidos y una firma de marca memorable.</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="contacto" className="max-w-6xl mx-auto px-6 py-14">
-          <div
-            className="rounded-[2rem] p-10 text-white shadow-xl"
-            style={{ backgroundColor: "#6F4E37" }}
-          >
-            <p className="font-script text-2xl mb-2" style={{ color: "#F5EBDD" }}>
-              ¿Te gusta esta idea?
-            </p>
-            <h2 className="font-display text-4xl mb-4">Podemos convertirla en tienda, portafolio o marca personal.</h2>
-            <p className="font-body text-white/90 max-w-2xl mb-6">
-              Ya dejé una base visual completa con logotipo, imágenes, colores y tipografías. Se puede adaptar rápidamente al tema que tú prefieras.
-            </p>
-            <button
-              className="px-6 py-3 rounded-2xl font-semibold"
-              style={{ backgroundColor: "#C97B63" }}
-            >
-              Personalizar diseño
-            </button>
-          </div>
-        </section>
-      </main>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#colores">Colores</a>
+        <a href="#tipografias">Tipografías</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
     </div>
-  );
-}
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-wrap">
+        <div>
+          <div class="eyebrow">Café, aroma y diseño</div>
+          <h1>Una landing page elegante para tu cafetería artesanal.</h1>
+          <p>
+            Este index ya viene listo para GitHub con el estilo integrado dentro del mismo archivo.
+            Solo sube tu logo y tus tres imágenes a la carpeta <strong>assets</strong> y la página tomará vida automáticamente.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto">Reservar mesa</a>
+            <a class="btn btn-outline" href="#tipografias">Ver identidad visual</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>3</strong>
+              <span>Imágenes</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>Colores</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>Tipografías</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-gallery">
+          <!-- ESPACIO IMAGEN 1 -->
+          <div class="big">
+            <img src="./assets/imagen-1.jpg" alt="Imagen principal de la cafetería">
+          </div>
+
+          <!-- ESPACIO IMAGEN 2 -->
+          <div class="small">
+            <img src="./assets/imagen-2.jpg" alt="Segunda imagen de la cafetería">
+          </div>
+
+          <!-- ESPACIO IMAGEN 3 -->
+          <div class="small">
+            <img src="./assets/imagen-3.jpg" alt="Tercera imagen de la cafetería">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="colores">
+      <div class="container card-block">
+        <div class="section-top">
+          <div class="section-kicker">Paleta base</div>
+          <h2 class="section-title">Los 3 colores de la marca</h2>
+        </div>
+
+        <div class="palette">
+          <article class="palette-card">
+            <div class="palette-swatch" style="background:#6f4e37;"></div>
+            <div class="palette-info">
+              <h3>Marrón café</h3>
+              <p>#6F4E37</p>
+            </div>
+          </article>
+
+          <article class="palette-card">
+            <div class="palette-swatch" style="background:#f5ebdd;"></div>
+            <div class="palette-info">
+              <h3>Crema suave</h3>
+              <p>#F5EBDD</p>
+            </div>
+          </article>
+
+          <article class="palette-card">
+            <div class="palette-swatch" style="background:#c97b63;"></div>
+            <div class="palette-info">
+              <h3>Terracota</h3>
+              <p>#C97B63</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tipografias">
+      <div class="container">
+        <div class="section-top">
+          <div class="section-kicker">Estilo tipográfico</div>
+          <h2 class="section-title">Las 3 tipografías del diseño</h2>
+        </div>
+
+        <div class="typos">
+          <article class="typo-card">
+            <h3 class="typo-display">Playfair Display</h3>
+            <p>Para títulos elegantes y con mucha personalidad visual.</p>
+          </article>
+
+          <article class="typo-card">
+            <h3 class="typo-body">Inter</h3>
+            <p>Para textos limpios, modernos y fáciles de leer.</p>
+          </article>
+
+          <article class="typo-card">
+            <h3 class="typo-script">Pacifico</h3>
+            <p>Para acentos de marca más cálidos y cercanos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="cta">
+          <h2>Tu web ya está lista para recibir tus archivos.</h2>
+          <p>
+            Solo crea la carpeta <strong>assets</strong> dentro de tu repositorio de GitHub, sube tu logo y las tres imágenes,
+            y esta landing quedará conectada de inmediato con el diseño que ya te dejé montado.
+          </p>
+          <a class="btn btn-primary" href="#inicio">Volver arriba</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Café Artesano • Diseño base listo para GitHub Pages</p>
+    </div>
+  </footer>
+</body>
+</html>
