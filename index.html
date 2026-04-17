@@ -230,27 +230,30 @@
 
     .hero-gallery .big {
       grid-column: 1 / -1;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .gallery-item.big img {
       height: 360px;
     }
 
-    .hero-gallery .small {
+    .gallery-item.small img {
       height: 230px;
     }
 
     .hero-gallery img {
       width: 100%;
-      height: 100%;
       object-fit: cover;
       border-radius: 28px;
       box-shadow: var(--sombra);
     }
 
-    .gallery-item {
-      position: relative;
-    }
-
     .gallery-item figcaption {
-      margin-top: 8px;
       font-size: 0.83rem;
       color: #6b5c51;
       font-weight: 600;
@@ -364,11 +367,11 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-gallery .big {
+      .gallery-item.big img {
         height: 280px;
       }
 
-      .hero-gallery .small {
+      .gallery-item.small img {
         height: 220px;
       }
     }
@@ -398,8 +401,8 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-gallery .big,
-      .hero-gallery .small {
+      .gallery-item.big img,
+      .gallery-item.small img {
         height: 240px;
       }
 
@@ -411,19 +414,7 @@
   </style>
 </head>
 <body>
-  <!--
-    ESTRUCTURA RECOMENDADA EN GITHUB:
-
-    /tu-repo
-      index.html
-      /assets
-        logo.png
-        imagen-1.jpg
-        imagen-2.jpg
-        imagen-3.jpg
-
-    Si tus archivos tienen otro nombre, solo cambia las rutas src.
-  -->
+  
 
   <header class="topbar">
     <div class="container nav">
@@ -456,8 +447,7 @@
           <div class="eyebrow">Café, aroma y diseño</div>
           <h1>Una landing page elegante para tu cafetería artesanal.</h1>
           <p>
-            Este index ya viene listo para GitHub con el estilo integrado dentro del mismo archivo.
-            Solo sube tu logo y tus tres imágenes a la carpeta <strong>assets</strong> y la página tomará vida automáticamente.
+            Una propuesta visual cálida y elegante para una cafetería artesanal, con el estilo integrado dentro del mismo archivo y una identidad pensada para resaltar el logo, las imágenes y la marca.
           </p>
 
           <div class="hero-actions">
@@ -485,19 +475,19 @@
           <!-- ESPACIO IMAGEN 1 -->
           <figure class="gallery-item big">
             <img src="./assets/Imagen1webp.webp" alt="Imagen principal de la cafetería en formato webp">
-            <figcaption>Formato WEBP • Archivo: Imagen1webp.webp</figcaption>
+            <figcaption>Formato WEBP</figcaption>
           </figure>
 
           <!-- ESPACIO IMAGEN 2 -->
           <figure class="gallery-item small">
             <img src="./assets/Imagen2png.png" alt="Segunda imagen de la cafetería en formato png">
-            <figcaption>Formato PNG • Archivo: Imagen2png.png</figcaption>
+            <figcaption>Formato PNG</figcaption>
           </figure>
 
           <!-- ESPACIO IMAGEN 3 -->
           <figure class="gallery-item small">
             <img src="./assets/Imagen3jpg.jpg" alt="Tercera imagen de la cafetería en formato jpg">
-            <figcaption>Formato JPG • Archivo: Imagen3jpg.jpg</figcaption>
+            <figcaption>Formato JPG</figcaption>
           </figure>
         </div>
       </div>
@@ -587,8 +577,7 @@
         <div class="cta">
           <h2>Tu web ya está lista para recibir tus archivos.</h2>
           <p>
-            Solo crea la carpeta <strong>assets</strong> dentro de tu repositorio de GitHub, sube tu logo y las tres imágenes,
-            y esta landing quedará conectada de inmediato con el diseño que ya te dejé montado.
+            Una página pensada para mostrar la identidad de la cafetería, sus imágenes y su estilo visual de forma clara, limpia y atractiva.
           </p>
           <a class="btn btn-primary" href="#inicio">Volver arriba</a>
         </div>
@@ -598,7 +587,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p>Café Artesano • Diseño base listo para GitHub Pages</p>
+      <p>Café Artesano • Cafetería artesanal</p>
     </div>
   </footer>
 </body>
