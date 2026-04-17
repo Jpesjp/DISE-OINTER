@@ -245,6 +245,18 @@
       box-shadow: var(--sombra);
     }
 
+    .gallery-item {
+      position: relative;
+    }
+
+    .gallery-item figcaption {
+      margin-top: 8px;
+      font-size: 0.83rem;
+      color: #6b5c51;
+      font-weight: 600;
+      padding-left: 6px;
+    }
+
     section {
       padding: 36px 0;
     }
@@ -430,6 +442,7 @@
       <nav class="menu">
         <a href="#inicio">Inicio</a>
         <a href="#colores">Colores</a>
+        <a href="#logo-significado">Logo</a>
         <a href="#tipografias">Tipografías</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -470,19 +483,22 @@
 
         <div class="hero-gallery">
           <!-- ESPACIO IMAGEN 1 -->
-          <div class="big">
-            <img src="./assets/Imagen1webp.webp" alt="Imagen principal de la cafetería">
-          </div>
+          <figure class="gallery-item big">
+            <img src="./assets/Imagen1webp.webp" alt="Imagen principal de la cafetería en formato webp">
+            <figcaption>Formato WEBP • Archivo: Imagen1webp.webp</figcaption>
+          </figure>
 
           <!-- ESPACIO IMAGEN 2 -->
-          <div class="small">
-            <img src="./assets/Imagen2png.png" alt="Segunda imagen de la cafetería">
-          </div>
+          <figure class="gallery-item small">
+            <img src="./assets/Imagen2png.png" alt="Segunda imagen de la cafetería en formato png">
+            <figcaption>Formato PNG • Archivo: Imagen2png.png</figcaption>
+          </figure>
 
           <!-- ESPACIO IMAGEN 3 -->
-          <div class="small">
-            <img src="./assets/Imagen3jpg.jpg" alt="Tercera imagen de la cafetería">
-          </div>
+          <figure class="gallery-item small">
+            <img src="./assets/Imagen3jpg.jpg" alt="Tercera imagen de la cafetería en formato jpg">
+            <figcaption>Formato JPG • Archivo: Imagen3jpg.jpg</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -519,6 +535,24 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section id="logo-significado">
+      <div class="container card-block">
+        <div class="section-top">
+          <div class="section-kicker">Identidad del logo</div>
+          <h2 class="section-title">¿Por qué elegimos este logo?</h2>
+        </div>
+
+        <p style="font-size:1.05rem; color:#57473c; max-width:900px; margin-bottom:14px;">
+          Elegimos este logo porque comunica de inmediato la esencia de una cafetería artesanal: la taza de café representa el producto principal,
+          el vapor transmite calidez y frescura, y las hojas con granos alrededor refuerzan la idea de origen natural, calidad y trabajo hecho con dedicación.
+        </p>
+        <p style="font-size:1.05rem; color:#57473c; max-width:900px;">
+          Además, la combinación entre una palabra con estilo más elegante en “Café” y una base sólida en “ARTESANO” ayuda a que la marca se vea cercana,
+          profesional y fácil de recordar. También funciona bien en web, redes sociales, empaques y material publicitario.
+        </p>
       </div>
     </section>
 
